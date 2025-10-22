@@ -1755,8 +1755,9 @@ function Add-SettingTextBox
 {
     param($id, $value)
 
+    $escapedText = [System.Security.SecurityElement]::Escape($value)
     $xaml =  @"
-<TextBox $wpfNS Name="$($id)" Tag="$title">$value</TextBox>
+<TextBox $wpfNS Name="$($id)" Tag="$title">$escapedText</TextBox>
 "@
     return [Windows.Markup.XamlReader]::Parse($xaml)
 }
